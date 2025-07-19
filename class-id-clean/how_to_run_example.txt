@@ -1,0 +1,5 @@
+
+STEP1: Extract Features from Video
+python3 step1_extract_features.py \
+    -v ./videos/session_1_cut_4to7.mp4 \
+    -o ./outputs/session_1_raw

@@ -1,0 +1,112 @@
+step1_extract_features.py
+
+python3 step1_extract_features.py \
+    -v /path/to/your/classroom_video.mp4 \
+    -o /path/to/your/raw_features_output
+
+Each .pickle file contains a single Python tuple with two elements: (frame_id, persons_data).
+frame_id (integer): The frame number from the original video.
+persons_data (list of dictionaries): A list where each dictionary represents one person detected in that frame. The structure of each dictionary is:
+{
+    # --- Identification & Location ---
+    'track_id': 42,
+    # A temporary integer ID from the OC-SORT tracker. Its purpose is to link the same
+    # person across consecutive frames. It is NOT final and can be unreliable (e.g., the
+    # ID for a person might change if they are occluded). This is what we will fix later.
+
+    'bbox': np.ndarray(shape=(4,)),
+    # The bounding box for the person's whole body. Format: [x_min, y_min, x_max, y_max].
+    # These are the absolute pixel coordinates within the full video frame.
+
+    # --- Behavioral Cue: Pose ---
+    'keypoints': np.ndarray(shape=(17, 3)),
+    # The body pose information. It's an array of 17 body joints (from the COCO dataset
+    # standard: nose, left_eye, right_eye, ..., left_ankle). Each joint has 3 values:
+    # [x_coordinate, y_coordinate, confidence_score]. The confidence score (0.0 to 1.0)
+    # indicates how certain the model is that it found the joint correctly.
+
+    # --- Behavioral Cue: Face ---
+    'face': np.ndarray(shape=(1, 5)),
+    # The bounding box for the detected face. Format: [[x_min, y_min, x_max, y_max, confidence]].
+    # The coordinates are relative to the person's main 'bbox'. The code calculates
+    # absolute coordinates from this to feed into the gaze and embedding models.
+
+    # --- Behavioral Cue: Gaze ---
+    'rvec': np.ndarray(shape=(3,)),
+    # A 3D "rotation vector" representing the head's orientation in space. It's a compact
+    # way to describe the pitch, yaw, and roll of the head.
+
+    'tvec': np.ndarray(shape=(3,)),
+    # A 3D "translation vector" representing the head's position in space relative to the camera.
+
+    'gaze_2d': np.ndarray(shape=(1, 4)),
+    # A 2D projection of the 3D gaze onto the image. It represents a line segment, with
+    # coordinates [start_x, start_y, end_x, end_y], often drawn from the center of the
+    # eye to show the direction of gaze.
+
+    # --- Behavioral Cue: Facial Signature for Re-Identification ---
+    'face_embedding': np.ndarray(shape=(512,)),
+    # This is the most critical output for re-identification. It's a 512-dimensional
+    # vector that acts as a numerical "fingerprint" of the face. The key idea is that
+    # embeddings of the SAME person will be very close to each other in this high-dimensional
+    # space, while embeddings of DIFFERENT people will be far apart. This property is
+    # what we will leverage in later steps to match IDs across sessions.
+}
+
+For each frame, it performs a two-stage process:
+    1. Detect and Track: It first employs the OC-SORT tracking algorithm to answer the fundamental questions: "Who is in this frame, and where are they located?" The output of this stage is a list of all detected individuals, each with a temporary tracking ID and a bounding box defining their position.
+
+    2. Isolate and Analyze: For every person identified by the tracker, the script uses their bounding box to isolate their image from the original video frame. This specific, cropped image is then passed through an ensemble of specialized deep learning models to extract a rich set of behavioral and identity features:
+        - Body Pose: Keypoints for joints are estimated.
+        - Face Location: The precise facial region is detected.
+        - Gaze Direction: Head orientation and 2D gaze vectors are calculated.
+        - Facial Embedding: A unique 512-dimensional vector, or "facial fingerprint," is generated for re-identification purposes.
+Finally, all the extracted features for every person in a single frame are aggregated and saved to a dedicated file, creating a complete, time-stamped snapshot of the classroom that serves as the raw input for all subsequent analysis.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+step2_visualize_features.py
+
+python3 step2_visualize_features.py \
+    -f /path/to/your/raw_features_output \
+    -v /path/to/your/classroom_video.mp4 \
+    -o /path/to/your/visualizations_output
+
+
+
+python step2_visualize_features.py \
+    --features outputs/session_1_raw/ \
+    --video videos/session_1_cut_4to7.mp4 \
+    --output visualizations_new/session_1/
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+python3 step3_reconcile_ids.py \
+    -f ./outputs/session_1_raw/ \
+    -o ./outputs/session_1_reconciliation
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+python step4_global_reconciliation.py \
+    --features outputs/session_1_raw/ \
+    --local-map outputs/session_1_reconciliation/local_id_map.json \
+    --output outputs/session_1_reconciliation/global_id_map.json \
+
+
+
