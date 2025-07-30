@@ -1,0 +1,28 @@
+# Git and IDE files
+.git
+.gitignore
+.idea/
+.vscode/
+
+# Docker specific files
+Dockerfile
+.dockerignore
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local data, models, and output directories.
+# These will be mounted as volumes instead.
+class-id-clean/videos/
+class-id-clean/outputs/
+class-id-clean/visualizations/
+class-id-clean/visualizations_new/
+class-id-clean/models/
+class-id-clean/weights/
+class-id-clean/old_scripts/
+
+# Other non-essential files
+old-dirty/
+ClassID-Paper.pdf
+README.md
