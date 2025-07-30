@@ -1,0 +1,147 @@
+StudentID,StudentName,participation,type
+0,0205_0,1,Ground Truth
+0,0228_8,1,Ground Truth
+0,0214_2,17,Ground Truth
+0,0214_14,11,Ground Truth
+0,0402_13,26,Ground Truth
+0,0307_9,3,Ground Truth
+0,0402_5,3,Ground Truth
+1,0205_1,1,Ground Truth
+1,0214_0,7,Ground Truth
+1,0228_15,1,Ground Truth
+2,0402_14,14,Ground Truth
+2,0214_12,6,Ground Truth
+2,0307_6,1,Ground Truth
+2,0228_3,3,Ground Truth
+3,0402_2,3,Ground Truth
+3,0214_1,11,Ground Truth
+3,0307_1,15,Ground Truth
+3,0228_5,13,Ground Truth
+3,0205_14,3,Ground Truth
+4,0307_0,2,Ground Truth
+4,0214_10,2,Ground Truth
+4,0205_5,1,Ground Truth
+4,0402_10,1,Ground Truth
+5,0307_11,8,Ground Truth
+5,0402_6,2,Ground Truth
+5,0402_7,1,Ground Truth
+5,0307_17,1,Ground Truth
+5,0228_7,4,Ground Truth
+5,0228_9,8,Ground Truth
+5,0402_4,4,Ground Truth
+5,0228_12,4,Ground Truth
+5,0307_7,3,Ground Truth
+5,0228_19,6,Ground Truth
+5,0307_13,6,Ground Truth
+5,0214_3,7,Ground Truth
+5,0307_5,4,Ground Truth
+5,0214_4,9,Ground Truth
+5,0205_13,12,Ground Truth
+5,0205_9,4,Ground Truth
+5,0214_6,32,Ground Truth
+5,0228_1,14,Ground Truth
+5,0402_0,8,Ground Truth
+5,0214_8,5,Ground Truth
+5,0228_16,5,Ground Truth
+5,0402_3,6,Ground Truth
+5,0402_8,20,Ground Truth
+5,0214_9,17,Ground Truth
+5,0307_3,11,Ground Truth
+5,0205_6,1,Ground Truth
+5,0205_12,1,Ground Truth
+5,0205_16,14,Ground Truth
+5,0214_7,2,Ground Truth
+6,0228_0,11,Ground Truth
+6,0205_7,1,Ground Truth
+6,0214_5,16,Ground Truth
+7,0205_9,4,Ground Truth
+7,0228_1,14,Ground Truth
+7,0214_9,17,Ground Truth
+8,0402_4,4,Ground Truth
+8,0228_12,4,Ground Truth
+8,0205_10,9,Ground Truth
+8,0307_7,3,Ground Truth
+8,0214_7,2,Ground Truth
+9,0205_11,10,Ground Truth
+9,0307_4,19,Ground Truth
+9,0214_17,11,Ground Truth
+9,0228_2,7,Ground Truth
+9,0402_11,8,Ground Truth
+10,0214_3,7,Ground Truth
+10,0205_13,12,Ground Truth
+11,0228_16,5,Ground Truth
+11,0307_5,4,Ground Truth
+11,0205_16,14,Ground Truth
+11,0214_6,32,Ground Truth
+11,0228_19,6,Ground Truth
+12,0214_14,11,Ground Truth
+13,0214_16,6,Ground Truth
+14,0205_12,1,Ground Truth
+14,0307_5,4,Ground Truth
+14,0228_19,6,Ground Truth
+15,0228_13,7,Ground Truth
+15,0205_15,10,Ground Truth
+16,0307_16,1,Ground Truth
+16,0228_6,29,Ground Truth
+0,0205_1,1,Prediction
+0,0214_0,7,Prediction
+0,0228_15,1,Prediction
+1,0214_1,11,Prediction
+1,0307_5,4,Prediction
+1,0228_5,13,Prediction
+1,0228_3,3,Prediction
+1,0205_14,3,Prediction
+1,0307_17,1,Prediction
+2,0228_0,11,Prediction
+2,0214_2,17,Prediction
+2,0205_7,1,Prediction
+2,0214_5,16,Prediction
+3,0402_3,6,Prediction
+3,0214_9,17,Prediction
+3,0307_3,11,Prediction
+3,0205_9,4,Prediction
+3,0228_1,14,Prediction
+4,0307_7,3,Prediction
+4,0205_10,9,Prediction
+4,0214_7,2,Prediction
+5,0205_0,1,Prediction
+5,0228_8,1,Prediction
+5,0205_11,10,Prediction
+5,0307_4,19,Prediction
+5,0214_17,11,Prediction
+5,0228_2,7,Prediction
+5,0402_11,8,Prediction
+6,0214_14,11,Prediction
+7,0205_12,1,Prediction
+7,0228_19,6,Prediction
+7,0307_11,8,Prediction
+8,0228_13,7,Prediction
+8,0205_15,10,Prediction
+9,0214_2,17,Prediction
+9,0402_4,4,Prediction
+9,0402_6,2,Prediction
+9,0228_12,4,Prediction
+9,0205_13,12,Prediction
+9,0214_8,5,Prediction
+10,0214_3,7,Prediction
+10,0228_7,4,Prediction
+10,0307_13,6,Prediction
+11,0228_6,29,Prediction
+12,0214_12,6,Prediction
+12,0402_14,14,Prediction
+12,0307_6,1,Prediction
+13,0402_10,1,Prediction
+13,0307_0,2,Prediction
+13,0214_10,2,Prediction
+14,0307_11,8,Prediction
+14,0214_8,5,Prediction
+15,0214_6,32,Prediction
+15,0307_5,4,Prediction
+15,0402_8,20,Prediction
+16,0228_16,5,Prediction
+16,0402_0,8,Prediction
+17,0402_7,1,Prediction
+17,0205_16,14,Prediction
+17,0307_17,1,Prediction
+18,0228_8,1,Prediction
+18,0214_4,9,Prediction

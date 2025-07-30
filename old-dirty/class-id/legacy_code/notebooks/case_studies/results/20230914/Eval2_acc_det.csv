@@ -1,0 +1,16 @@
+Course,Session,Session Date,Accuracy,Detection Rate
+05748A,classinsight-cmu_05748A_ghc_4101_201902141630,Feb 14,96,98
+05748A,classinsight-cmu_05748A_ghc_4101_201904021630,Apr 2,95.5,96.6
+05748A,classinsight-cmu_05748A_ghc_4101_201902051630,Feb 5,100,98.8
+05748A,classinsight-cmu_05748A_ghc_4101_201902281630,Feb 28,92.3,99.2
+05748A,classinsight-cmu_05748A_ghc_4101_201903071630,Mar 7,83.3,97.6
+17214B,classinsight-cmu_17214B_ph_a21_201902271030,Feb 27,97,100
+17214B,classinsight-cmu_17214B_ph_a21_201903061030,Mar 6,100,95.4
+17214B,classinsight-cmu_17214B_ph_a21_201904031030,Apr 3,88,100
+17214B,classinsight-cmu_17214B_ph_a21_201904101030,Apr 10,91.6,99.3
+17214B,classinsight-cmu_17214B_ph_a21_201904241030,Apr 24,92.8,100
+17214C,classinsight-cmu_17214C_ph_225b_201903201130,Mar 20,100,99
+17214C,classinsight-cmu_17214C_ph_225b_201904101130,Apr 10,90.2,99.6
+17214C,classinsight-cmu_17214C_ph_225b_201904171130,Apr 17,98.3,99.7
+17214C,classinsight-cmu_17214C_ph_225b_201904241130,Apr 24,100,99
+17214C,classinsight-cmu_17214C_ph_225b_201905011130,May 1,88.5,98
