@@ -80,6 +80,7 @@ class RetinaFaceInference(object):
         # Determine if we should load to CPU
         load_to_cpu = (device == 'cpu')
         net = load_model(net, "weights/mobilenet0.25_Final.pth", load_to_cpu, device)
+        # net = load_model(net, "weights/mobilenet0.25_Final.pth", load_to_cpu, device)
         net.eval()
         # print('Finished loading model!')
         # print(net)

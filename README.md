@@ -33,3 +33,16 @@ python3 step3_reconcile_ids.py \
     -o ./outputs/session_1_reconciliation
 ```
     
+
+### Downloading the model Weights:
+
+1. First we will download all the .pth files present in [link](https://drive.google.com/drive/folders/1mUtuwzOQwKuVb1XMRxDjkGUJ3bSNLPjz?usp=sharing) into a new directory we will create:
+```shell
+mkdir -p ./class-id-clean/models/mmlab
+```
+
+Download all the model weights from https://drive.google.com/drive/folders/1mUtuwzOQwKuVb1XMRxDjkGUJ3bSNLPjz?usp=sharing into the `mmlab` directory that was just created...
+
+
+
+2. Secondly we will download the `mobilenet0.25_Final.pth` into `class-id-clean/weights/` from https://drive.google.com/drive/folders/15dWsWr4dpQUf8zyuH0gi6y7fOQN5l84X?usp=sharing
