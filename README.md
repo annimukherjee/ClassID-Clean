@@ -44,3 +44,17 @@ Download all the model weights from this [Google Drive Link](https://drive.googl
 
 
 2. Secondly we will download the `mobilenet0.25_Final.pth` into `class-id-clean/weights/` from this [Google Drive Link](https://drive.google.com/drive/folders/15dWsWr4dpQUf8zyuH0gi6y7fOQN5l84X?usp=sharing) 
+
+
+
+## Run with Docker:
+
+```docker
+docker build -t classid-app .
+```
+
+```docker
+docker run -it --rm \
+  -v "$(pwd)/class-id-clean:/app/class-id-clean" \
+  classid-app
+```
