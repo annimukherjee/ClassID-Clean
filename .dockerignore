@@ -4,6 +4,13 @@
 .idea/
 .vscode/
 
+# Git and IDE files
+.git
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+
 # Docker specific files
 Dockerfile
 .dockerignore
@@ -12,17 +19,89 @@ Dockerfile
 __pycache__/
 *.pyc
 
-# Local data, models, and output directories.
-# These will be mounted as volumes instead.
-class-id-clean/videos/
-class-id-clean/outputs/
-class-id-clean/visualizations/
-class-id-clean/visualizations_new/
-class-id-clean/models/
-class-id-clean/weights/
-class-id-clean/old_scripts/
+# # Local data, models, and output directories.
+# # These will be mounted as volumes instead.
+# class-id-clean/videos/
+# class-id-clean/outputs/
+# class-id-clean/visualizations/
+# class-id-clean/visualizations_new/
+# class-id-clean/models/
+# class-id-clean/weights/
+# class-id-clean/old_scripts/
 
-# Other non-essential files
-old-dirty/
+# # Other non-essential files
+# old-dirty/
+# ClassID-Paper.pdf
+# README.md
+
+
+# Python specific
+__pycache__/
+*.pyc
+
+
+# Environment folders
+.env
+venv/
+classid_webcam/
+
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+
+# Docker
+Dockerfile
+.dockerignore
+
+
+# Input/Output folders - these will be mounted from your local machine, not copied
+input/
+output/
+
+Outer-Direc/
+
 ClassID-Paper.pdf
-README.md
+INSTALL_GUIDE.md
+
+
+
+# Git and IDE files that should never be in the image
+.git
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+
+
+
+# Docker specific files
+Dockerfile
+.dockerignore
+
+
+
+# Python cache and local environment folders
+__pycache__/
+*.pyc
+venv/
+env/
+classid_webcam/
+
+
+# Directories for data that will be mounted as volumes, NOT copied into the image
+input/
+output/
+
+
+
+# Documentation and other non-essential files
+INSTALL_GUIDE.md
+requirements.txt
+
