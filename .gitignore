@@ -1,8 +1,13 @@
-*.pth
+
 .idea/
 .vscode/
+__pycache__/
 
 
-./models/mmlab/hrnet_w32-36af842e.pth
-./models/mmlab/ocsort_yolox_x_crowdhuman_mot17-private-half_20220813_101618-fe150582.pth
-./models/mmlab/hrnet_w32_coco_256x192-c78dce93_20200708.pth
+models/mmlab/hrnet_w32-36af842e.pth
+models/mmlab/ocsort_yolox_x_crowdhuman_mot17-private-half_20220813_101618-fe150582.pth
+models/mmlab/hrnet_w32_coco_256x192-c78dce93_20200708.pth
+
+
+.DS_Store
+**/.DS_Store
