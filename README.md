@@ -60,7 +60,8 @@ This command reads the `Dockerfile` and builds the complete, self-contained appl
 docker build -t classid-clean .
 ```
 
-> **Note:** A pre-built Docker image will be available on [Docker Hub](https://hub.docker.com/) soon for easier setup.
+> **Note:** A pre-built Docker image is available on [Docker Hub](https://hub.docker.com/) [here](https://hub.docker.com/r/animukh/classid-pipeline-cpu). 
+> So instead of **building** the image, you can just pull the [_pre-built_ image](https://hub.docker.com/r/animukh/classid-pipeline-cpu) and run it! Use the command: `docker pull animukh/classid-pipeline-cpu`
 
 
 ### Step 4: Run the Pipeline
