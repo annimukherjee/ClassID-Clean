@@ -6,6 +6,8 @@ from tqdm import tqdm
 from sklearn.cluster import DBSCAN
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import plot_track_lifespan, calculate_bbox_iou
+from video_utils import VideoVisualizer # ADD THIS
+
 
 # -- Configuration ---
 # DBSCAN parameters for cleaning facial embeddings before averaging
@@ -140,25 +142,38 @@ def global_id_reconciliation(input_path: str, output_path: str, plot_path: str):
         output_path=plot_path
     )
     print("--- Global ID reconciliation complete. ---")
-
+    
+    return id_to_merge_into
 
 if __name__ == '__main__':
     INPUT_PICKLE = './output/4_features_extracted.pkl'
     OUTPUT_PICKLE = './output/5_globally_reconciled.pkl'
     FINAL_PLOT = './output/5_lifespan_after_global_reconciliation.png'
+    # --- ADDED: Define I/O paths for the video ---
+    INPUT_VIDEO = './input/video.mp4'
+    OUTPUT_VIDEO = './output/video_5_global_reconciliation.mp4'
+    
     
     if not os.path.exists(INPUT_PICKLE):
         print(f"[ERROR] Input file not found: '{INPUT_PICKLE}'. Run feature extraction first.")
     else:
         start_time = time.time()
         print("hii")
-        global_id_reconciliation(
+        # --- MODIFIED: Capture the returned merge_map ---
+        merge_map = global_id_reconciliation(
             input_path=INPUT_PICKLE,
             output_path=OUTPUT_PICKLE,
             plot_path=FINAL_PLOT
         )
         end_time = time.time()
         print(f"\nTotal execution time: {end_time - start_time:.2f} seconds.")
+        
+        # --- ADDED: Generate video for this step ---
+        if os.path.exists(OUTPUT_PICKLE):
+            df_before = pd.read_pickle(INPUT_PICKLE)
+            df_after = pd.read_pickle(OUTPUT_PICKLE)
+            visualizer = VideoVisualizer(video_path=INPUT_VIDEO)
+            visualizer.generate_step_5_global_reconciliation_video(df_before, df_after, merge_map, OUTPUT_VIDEO)
 
 
 

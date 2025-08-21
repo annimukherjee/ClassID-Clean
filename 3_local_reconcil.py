@@ -2,6 +2,8 @@ import os
 import time
 import pandas as pd
 from utils import plot_track_lifespan, calculate_bbox_iou
+from video_utils import VideoVisualizer # ADD THIS
+
 
 # --- Configuration ---
 # The maximum number of frames allowed between the end of one track and the
@@ -116,21 +118,34 @@ def local_id_reconciliation(input_path: str, output_path: str, plot_path: str):
     )
     
     print("--- Local ID reconciliation complete. ---")
+    
+    return id_to_merge_into
 
 if __name__ == '__main__':
     INPUT_PICKLE = './output/2_filtered_results.pkl'
     OUTPUT_PICKLE = './output/3_reconciled_results.pkl'
     FINAL_PLOT = './output/3_lifespan_after_reconciliation.png'
+    # --- ADDED: Define I/O paths for the video ---
+    INPUT_VIDEO = './input/video.mp4'
+    OUTPUT_VIDEO = './output/video_3_local_reconciliation.mp4'
     
     if not os.path.exists(INPUT_PICKLE):
         print(f"[ERROR] Input file not found at '{INPUT_PICKLE}'.")
         print("Please run 'filter_ephemeral.py' first.")
     else:
         start_time = time.time()
-        local_id_reconciliation(
+        # --- MODIFIED: Capture the returned merge_map ---
+        merge_map = local_id_reconciliation(
             input_path=INPUT_PICKLE,
             output_path=OUTPUT_PICKLE,
             plot_path=FINAL_PLOT
         )
         end_time = time.time()
         print(f"\nTotal execution time: {end_time - start_time:.2f} seconds.")
+
+        # --- ADDED: Generate video for this step ---
+        if os.path.exists(OUTPUT_PICKLE):
+            df_before = pd.read_pickle(INPUT_PICKLE)
+            df_after = pd.read_pickle(OUTPUT_PICKLE)
+            visualizer = VideoVisualizer(video_path=INPUT_VIDEO)
+            visualizer.generate_step_3_local_reconciliation_video(df_before, df_after, merge_map, OUTPUT_VIDEO)

@@ -4,6 +4,7 @@ import pandas as pd
 import mmcv
 from mmtrack.apis import inference_mot, init_model as init_tracking_model
 from tqdm import tqdm
+from video_utils import VideoVisualizer # ADD THIS
 
 # --- Configuration ---
 # Path to the MMLab config file for the OC-SORT model.
@@ -109,6 +110,8 @@ if __name__ == '__main__':
     
     INPUT_VIDEO = './input/video.mp4'
     OUTPUT_PICKLE = './output/1_tracking_results.pkl'
+    # --- ADDED: Define output path for the video ---
+    OUTPUT_VIDEO = './output/video_1_oc_sort_ids.mp4'
     
     if not os.path.exists(INPUT_VIDEO):
         print(f"[ERROR] Input video not found at '{INPUT_VIDEO}'.")
@@ -123,3 +126,7 @@ if __name__ == '__main__':
             print("\nVerification: First 5 rows of the saved data:")
             df_loaded = pd.read_pickle(OUTPUT_PICKLE)
             print(df_loaded.head())
+            
+            # --- ADDED: Generate video for this step ---
+            visualizer = VideoVisualizer(video_path=INPUT_VIDEO)
+            visualizer.generate_step_1_oc_sort_video(df_loaded, OUTPUT_VIDEO)

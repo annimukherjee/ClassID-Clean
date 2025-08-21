@@ -6,6 +6,7 @@ import torch
 import numpy as np
 import cv2
 from tqdm import tqdm
+from video_utils import VideoVisualizer # ADD THIS
 
 # Model initializers
 from mmpose.apis import init_pose_model, inference_top_down_pose_model
@@ -127,6 +128,8 @@ if __name__ == '__main__':
     VIDEO_INPUT = './input/video.mp4'
     INPUT_PICKLE = './output/3_reconciled_results.pkl'
     OUTPUT_PICKLE = './output/4_features_extracted.pkl'
+    # --- ADDED: Define output path for the video ---
+    OUTPUT_VIDEO = './output/video_4_feature_extraction.mp4'
     
     if not os.path.exists(INPUT_PICKLE):
         print(f"[ERROR] Input file not found: '{INPUT_PICKLE}'. Run previous steps first.")
@@ -143,4 +146,8 @@ if __name__ == '__main__':
             print(f"\nTotal execution time: {end_time - start_time:.2f} seconds.")
             print("\nVerification: Info of the saved feature DataFrame:")
             df_loaded = pd.read_pickle(OUTPUT_PICKLE)
-            df_loaded.info()
+            print(df_loaded.info())
+            
+            # --- ADDED: Generate video for this step ---
+            visualizer = VideoVisualizer(video_path=VIDEO_INPUT)
+            visualizer.generate_step_4_feature_extraction_video(df_loaded, OUTPUT_VIDEO)

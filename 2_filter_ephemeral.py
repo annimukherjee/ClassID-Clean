@@ -2,6 +2,7 @@ import os
 import time
 import pandas as pd
 from utils import plot_track_lifespan
+from video_utils import VideoVisualizer # ADD THIS
 
 # --- Configuration ---
 # *** MODIFIED: Reduced the threshold to a more sensible default for short videos. ***
@@ -84,6 +85,9 @@ if __name__ == '__main__':
     OUTPUT_PICKLE = './output/2_filtered_results.pkl'
     BEFORE_PLOT = './output/2_1_lifespan_before_filter.png'
     AFTER_PLOT = './output/2_2_lifespan_after_filter.png'
+    # --- ADDED: Define I/O paths for the video ---
+    INPUT_VIDEO = './input/video.mp4' 
+    OUTPUT_VIDEO = './output/video_2_ephemeral_filter.mp4'
     
     if not os.path.exists(INPUT_PICKLE):
         print(f"[ERROR] Input file not found at '{INPUT_PICKLE}'.")
@@ -98,3 +102,10 @@ if __name__ == '__main__':
         )
         end_time = time.time()
         print(f"\nTotal execution time: {end_time - start_time:.2f} seconds.")
+        
+        # --- ADDED: Generate video for this step ---
+        if os.path.exists(OUTPUT_PICKLE):
+            df_before = pd.read_pickle(INPUT_PICKLE)
+            df_after = pd.read_pickle(OUTPUT_PICKLE)
+            visualizer = VideoVisualizer(video_path=INPUT_VIDEO)
+            visualizer.generate_step_2_ephemeral_filter_video(df_before, df_after, OUTPUT_VIDEO)
