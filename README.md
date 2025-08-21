@@ -51,41 +51,60 @@ mkdir -p ./models/mmlab
 
 
 
-### Step 3: Build the Docker Image
+### Step 3: Run the Pipeline
 
-This command reads the `Dockerfile` and builds the complete, self-contained application. This will take a significant amount of time (15-30 minutes) the first time you run it, as it downloads and installs the specific versions of all required libraries.
+This project is designed to be run with Docker. The easiest way is to use the pre-built image from Docker Hub.
 
-```docker
+**Option A: Run with the Pre-built Docker Image (Recommended)**
+
+1. Pull the Docker Image:
+Download the ready-to-use image from Docker Hub with this command:
+```shell
+docker pull animukh/classid-pipeline-cpu
+```
+
+2. Run the Pipeline:
+Place your video file inside the `input/` directory and ensure it is named `video.mp4`. Then, run the container with the following command:
+
+```shell
+docker run --rm \
+  -v "$(pwd)/input:/app/input" \
+  -v "$(pwd)/output:/app/output" \
+  animukh/classid-pipeline-cpu
+```
+
+The `-v` flags create a shared folder between your computer and the container, allowing it to read your video and save the results back to your `output/` folder.
+
+
+**Option B: Build the Image from Scratch**
+
+If you need to modify the project or build the image locally, you can follow these steps.
+
+
+1. Build the Docker Image:
+This command reads the Dockerfile and builds the complete application. This will take a significant amount of time (15-30 minutes) the first time you run it.
+
+```
 # Run this from the project's root directory
 docker build -t classid-clean .
 ```
 
-> **Note:** A pre-built Docker image is available on [Docker Hub](https://hub.docker.com/) [here](https://hub.docker.com/r/animukh/classid-pipeline-cpu). 
-> So instead of **building** the image, you can just pull the [_pre-built_ image](https://hub.docker.com/r/animukh/classid-pipeline-cpu) and run it! Use the command: `docker pull animukh/classid-pipeline-cpu`
+2. Run the Pipeline:
+Once the build is complete, run the locally-built container:
 
-
-### Step 4: Run the Pipeline
-
-With the image successfully built, you can now process a video.
-Place your video file inside the `input/` directory. It must be named `video.mp4`.
-Run the container with the following command:
-
-```docker
+```
 docker run --rm \
   -v "$(pwd)/input:/app/input" \
   -v "$(pwd)/output:/app/output" \
   classid-clean
 ```
 
-The -v flags create a shared folder between your computer and the container, allowing it to read your video and save the results back to your output folder.
-
-The full pipeline will run, and all results will appear in your local `output/` directory.
-
 ### Understanding the Output
 
 After the run is complete, your `output/` folder will contain:
 1. Data Files (.pkl): The processed data from each step of the pipeline. The final result is `5_globally_reconciled.pkl`.
 2. Visualizations (.png): Graphs showing the lifespan of track IDs at different stages, which helps in visualizing how the data is cleaned and reconciled.
+3. Annotated Videos (.mp4): For each processing stage, a video is generated with bounding boxes and track IDs drawn on each frame. This allows you to visually inspect the results of each step, from the raw output of `video_1_oc_sort_ids.mp4` to the final `video_5_global_reconciliation.mp4`.
 
 
 
@@ -99,4 +118,6 @@ After the run is complete, your `output/` folder will contain:
 This project is an implementation based on the excellent work of the original authors. Full credit for the methodology goes to them. Please cite their paper if you use this work:
 
 
+```
 Patidar, P., Ngoon, T. J., Zimmerman, J., Ogan, A., & Agarwal, Y. (2024). ClassID: Enabling Student Behavior Attribution from Ambient Classroom Sensing Systems. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 8, 2, Article 55 (June 2024), 28 pages. https://doi.org/10.1145/3659586
+```
