@@ -6,7 +6,7 @@ from collections import defaultdict
 import pandas as pd
 
 class ClassIDTrackingVisualizer:
-    def __init__(self, model_path="yolo11n.pt", video_path="./8th-grade-vid.mp4", min_id_duration_frames=30, max_duration_seconds=30):
+    def __init__(self, model_path="yolo11n.pt", video_path="./videos/8th-grade-vid.mp4", min_id_duration_frames=30, max_duration_seconds=30):
         self.model = YOLO(model_path)
         self.video_path = video_path
         self.min_id_duration_frames = min_id_duration_frames
@@ -267,8 +267,8 @@ if __name__ == "__main__":
     # min_id_duration_frames: ClassID paper suggests 1 minute, adjust based on your video FPS
     # For 5 FPS video: 30 frames = 6 seconds, 60 frames = 12 seconds
     visualizer = ClassIDTrackingVisualizer(
-        model_path="yolo11n.pt",
-        video_path="./8th-grade-vid.mp4",
+        model_path="yolo11l.pt",
+        video_path="./videos/8th-grade-vid.mp4",
         min_id_duration_frames=30  # Adjust this threshold as needed
     )
     visualizer.process_video()

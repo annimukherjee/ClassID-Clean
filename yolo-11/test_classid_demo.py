@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
 
-def run_classid_demo(video_path="./8th-grade-vid.mp4", min_duration_frames=15, max_duration_seconds=30):
+def run_classid_demo(video_path="./videos/8th-grade-vid.mp4", min_duration_frames=15, max_duration_seconds=30):
     """
     Demo showing the difference between raw YOLO tracking and ClassID filtering
     """
@@ -22,7 +22,7 @@ def run_classid_demo(video_path="./8th-grade-vid.mp4", min_duration_frames=15, m
     print(f"MPS available: {torch.backends.mps.is_available()}")
 
     # Initialize YOLO model
-    model = YOLO("yolo11n.pt")
+    model = YOLO("yolo11l.pt")
 
     # Track data
     raw_data = []
@@ -139,7 +139,7 @@ def run_classid_demo(video_path="./8th-grade-vid.mp4", min_duration_frames=15, m
 if __name__ == "__main__":
     # Run the demo
     run_classid_demo(
-        video_path="./8th-grade-vid.mp4",
+        video_path="./videos/8th-grade-vid.mp4",
         min_duration_frames=15,  # Adjust this threshold as needed
         max_duration_seconds=30   # Process only first 30 seconds
     )
